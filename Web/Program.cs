@@ -9,6 +9,7 @@ namespace Web
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddInfrastructureService(builder.Configuration);
+            builder.Services.AddWebServices();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
