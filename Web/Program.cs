@@ -1,3 +1,4 @@
+using Infrastructure;
 
 namespace Web
 {
@@ -7,6 +8,7 @@ namespace Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddInfrastructureService(builder.Configuration);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using Domain.Enums;
 
 namespace Domain.Entities
 {
