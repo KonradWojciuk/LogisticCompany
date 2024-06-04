@@ -1,4 +1,5 @@
 using Infrastructure;
+using Web.Middleware;
 
 namespace Web
 {
@@ -19,14 +20,17 @@ namespace Web
 
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            app.UseCustomHeadersMiddleware();
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.UseAuthorization();
 
             app.Run();
         }
