@@ -1,7 +1,10 @@
 using Application.Interfaces;
+using Application.Repositories;
 using Domain.Entities;
 using Domain.Enums;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Web.Controllers;
 
@@ -66,6 +69,46 @@ namespace LogisticCompanyTest
             Assert.IsNotNull(okResult);
             var returnedShipment = okResult.Value as Shipment;
             Assert.AreEqual(1, returnedShipment.Id);
+        }
+
+        [TestMethod]
+        public async Task GetShipmentsByTruckId_ReturnsShipmentsForGivenTruckId()
+        {
+            // Arrange
+            int truckId = 1;
+            var mockRepository = new Mock<IShipmentRepository>();
+            var shipments = new List<Shipment> { new Shipment { Id = 1, TruckId = truckId }, new Shipment { Id = 2, TruckId = truckId } };
+            mockRepository.Setup(repo => repo.GetShipmentsByTruckIdAsync(truckId)).ReturnsAsync(shipments);
+            var controller = new ShipmentController(mockRepository.Object);
+
+            // Act
+            var result = await controller.GetShipmentsByTruckId(truckId);
+
+            // Assert
+            var okResult = result.Result as OkObjectResult;
+            var model = okResult.Value as IEnumerable<Shipment>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Count());
+        }
+
+        [TestMethod]
+        public async Task GetShipmentsByWarehouseId_ReturnsShipmentsForGivenWarehouseId()
+        {
+            // Arrange
+            int warehouseId = 1;
+            var mockRepository = new Mock<IShipmentRepository>();
+            var shipments = new List<Shipment> { new Shipment { Id = 1, WarehouseId = warehouseId }, new Shipment { Id = 2, WarehouseId = warehouseId } };
+            mockRepository.Setup(repo => repo.GetShipmentsByWarehouseIdAsync(warehouseId)).ReturnsAsync(shipments);
+            var controller = new ShipmentController(mockRepository.Object);
+
+            // Act
+            var result = await controller.GetShipmentsByWarehouseId(warehouseId);
+
+            // Assert
+            var okResult = result.Result as OkObjectResult;
+            var model = okResult.Value as IEnumerable<Shipment>;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Count());
         }
 
         [TestMethod]
