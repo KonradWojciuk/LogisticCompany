@@ -1,10 +1,7 @@
 using Application.Interfaces;
-using Application.Repositories;
 using Domain.Entities;
 using Domain.Enums;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using Web.Controllers;
 

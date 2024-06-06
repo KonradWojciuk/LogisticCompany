@@ -65,14 +65,14 @@ namespace Web.Controllers
 
             await _warehouseRepository.UpdateAsync(warehouse);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWarehouse(int id)
         {
             await _warehouseRepository.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
     }
 }
