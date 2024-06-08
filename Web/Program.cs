@@ -24,8 +24,8 @@ namespace Web
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                     options.TokenValidationParameters = new TokenValidationParameters
-                     {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
@@ -33,7 +33,7 @@ namespace Web
                         ValidIssuer = configuration["Jwt:Issuer"],
                         ValidAudience = configuration["Jwt:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Jwt:Key"]))
-                     };
+                    };
                 });
 
             builder.Services.AddSwaggerGen(c =>
@@ -78,6 +78,7 @@ namespace Web
             app.UseAuthorization();
 
             app.MapControllers();
+            app.MapGraphQL();
 
             app.UseAuthorization();
 

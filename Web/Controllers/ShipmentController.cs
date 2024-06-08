@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
+using Application.Repositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web.Controllers
 {
@@ -20,8 +22,8 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Shipment>>> GetAll()
         {
-            var shipments = await _shipmentRepository.GetAllAsync();
-            return Ok(shipments);
+            var trucks = await _shipmentRepository.GetAllAsync();
+            return Ok(trucks);
         }
 
         [HttpGet("{id}")]
@@ -73,5 +75,6 @@ namespace Web.Controllers
             await _shipmentRepository.DeleteAsync(id);
             return NoContent();
         }
+
     }
 }

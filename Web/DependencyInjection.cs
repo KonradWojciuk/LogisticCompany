@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Repositories;
+using Web.GraphQl;
 
 namespace Web
 {
@@ -11,6 +12,12 @@ namespace Web
             services.AddScoped<IShipmentRepository, ShipmentRepository>();
             services.AddScoped<ITruckRepository, TruckRepository>();
             services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+
+            services.AddGraphQLServer()
+                    .AddQueryType<Query>()
+                    .AddMutationType<Mutation>()
+                    .AddFiltering()
+                    .AddSorting();
 
             return services;
         }
