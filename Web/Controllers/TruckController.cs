@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ApiController]
     [Route("api/[controller]")]
     public class TruckController : ControllerBase

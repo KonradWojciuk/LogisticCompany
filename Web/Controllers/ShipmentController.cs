@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ApiController]
     [Route("api/[controller]")]
     public class ShipmentController : ControllerBase
