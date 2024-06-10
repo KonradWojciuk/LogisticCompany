@@ -1,0 +1,27 @@
+﻿@page
+@model WebApp.Pages.Admin.ShipmentModel
+@{
+}
+
+<h2>Shipments</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Truck Id</th>
+            <th>Warehouse Id</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shipment in Model.Shipments)
+        {
+            <tr>
+                <td>@shipment.Id</td>
+                <td>@shipment.TruckId</td>
+                <td>@shipment.WarehouseId</td>
+                <td>@shipment.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

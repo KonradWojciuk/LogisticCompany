@@ -3,6 +3,7 @@ using GraphQL.Client.Http;
 using Domain.Entities;
 using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL;
+using HotChocolate.Language;
 namespace WebApp.Services
 {
     public class GraphQLClientService
