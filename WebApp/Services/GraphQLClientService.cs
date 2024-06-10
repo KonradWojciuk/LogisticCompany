@@ -1,9 +1,10 @@
 ﻿using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using Domain.Entities;
-using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL;
+using GraphQL.Client.Serializer.Newtonsoft;
 using HotChocolate.Language;
+
 namespace WebApp.Services
 {
     public class GraphQLClientService
@@ -12,12 +13,12 @@ namespace WebApp.Services
 
         public GraphQLClientService()
         {
-            _client = new GraphQLHttpClient("https://example.com/graphql", new NewtonsoftJsonSerializer());
+            _client = new GraphQLHttpClient("https://localhost:7103/graphql", new NewtonsoftJsonSerializer());
         }
 
         public async Task<List<Shipment>> GetShipments()
         {
-            var query = new GraphQLRequest
+            var query = new GraphQL.GraphQLRequest
             {
                 Query = @"
                 {
